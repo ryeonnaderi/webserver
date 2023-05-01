@@ -7,5 +7,10 @@
       "**/*"
     ]
   },
+  {
+    "expo": {
+         "entryPoint": "./app.js"
+    }
+  },
   "name": "HypeTrain"
 }
