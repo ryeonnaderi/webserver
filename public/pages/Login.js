@@ -27,7 +27,7 @@ export default function LoginPage() {
     
     const hypeUserIdentificationCredentials = getHypeUserWithHypeUserName([username]);
     
-    const hypeUD = hypeUserCredentialshypeUserIdentificationCredentials..HypeID;
+    const hypeUD = hypeUserCredentialshypeUserIdentificationCredentials.hypeContinuumNetworkPortalLocation.HypeID;
     
     if (hypeUD == null) 
     { 
@@ -38,7 +38,7 @@ export default function LoginPage() {
     
     const hypeUserAccessCredentials = getHypeUserCredentials([hypeUD]);
     
-    const hypeUserAccessEnProtocol = hypeUserAccessCredentials..HypeAccessKey;
+    const hypeUserAccessEnProtocol = hypeUserAccessCredentials.hypeContinuumNetworkPortalLocation.HypeAccessKey;
     
     if (hypeUserAccessEnProtocol == null) 
     {
@@ -51,7 +51,7 @@ export default function LoginPage() {
     {
          setLoginFailed(false); 
          
-         setCurrentHypeTrainContinuumSignalConnection(hypeUD, username, hypeUserCredentialshypeUserIdentificationCredentials..HypeDisplayName, hypeUserCredentialshypeUserIdentificationCredentials..HypeEmail);
+         setCurrentHypeTrainContinuumSignalConnection(hypeUD, username, hypeUserCredentialshypeUserIdentificationCredentials.hypeContinuumNetworkPortalLocation.HypeDisplayName, hypeUserCredentialshypeUserIdentificationCredentials.hypeContinuumNetworkPortalLocation.HypeEmail);
          
          return;
     }
