@@ -1,21 +1,14 @@
+import { registerRootComponent } from 'expo';
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, FlatList, StatusBar } from 'react-native';
 import { MapkitProvider, Map, useMap, Marker } from 'react-mapkit';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
-import LegendaryHUDBuildingManager from './serverAssests/CustomUIFunctionality/UIBuilding/LegendaryHUDBuildingManager.js';
+import LegendaryHUDBuildingManager from '../serverAssests/CustomUIFunctionality/UIBuilding/LegendaryHUDBuildingManager.js';
 import { getCurrentHypeTrainContinuumSignalConnection } from '../../LegendaryHypeTrainContinuumSignalConnection.js';
-import LegendaryHUDBuilder from './serverAssests/CustomUIFunctionality/UIBuilding/LegendaryHUDBuilder.js';
-import LoginPage from './public/pages/Login.js';
-
-
-
-
-
-
-
-
+import LegendaryHUDBuilder from '../serverAssests/CustomUIFunctionality/UIBuilding/LegendaryHUDBuilder.js';
+import LoginPage from './pages/Login.js';
 
 const currentHypeTrainContinuumConnection = getCurrentHypeTrainContinuumSignalConnection();
 
@@ -24,6 +17,8 @@ const legendaryBuilder = LegendaryHUDBuilder.legendaryBuilding();
 const legendaryBuild = LegendaryHUDBuildingManager.build();
 
 const HypePages = createNativeStackNavigator();
+
+registerRootComponent(App);
 
 const hypeTrainHoverSettings = legendaryBuild.ConfigureHoverAppearance(
     "transparent",
@@ -45,7 +40,7 @@ export default function HypeTrainStationHub()
 { 
   return (
        <NavigationContainer>
-            <HypePages.Navigator initialRouteName = "HypeTrainStationHub" >
+            <HypePages.Navigator initialRouteName = "Login" >
                 <HypePages.Screen
                     name='Login'
                     component={LoginPage}

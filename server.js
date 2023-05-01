@@ -5,27 +5,61 @@
 */
 
 //Node.js
-import { HypeAccessEncryptionProtocol } from './ServerAssets/LegendaryHypeTrainContinuumAccessVoid.js';
-import { hypeTrainBeaconActivation } from './LegendaryHypeTrainContinuumWarper.js';
+
+// import { HypeTrainBeaconActivation } from './serverAssests/HypeTrainConfiguration/LegendaryHypeTrainContinuumWarper.js';
+
+// import { hypeTrainContinuumReach } from '../../LegendaryHypeTrainContinuumBeacon.js';
+
+async function hypeTrainBeaconActivation(hypeBeaconProtocol) {
+     try
+     {
+          const hypeContinuumConnectionProtocol = hypeBeaconProtocol;
+         
+          const hypeBeaconReachModel = [];
+         
+          const hypeBeachReachData = await hypeTrainContinuumReach({ continuumReachStatement : hypeContinuumConnectionProtocol, hypeTrainBeaconData : hypeBeaconReachModel});
+         
+          res.status(200).json({ hypeContinuumNetworkPortalLocation : hypeBeaconReachData })
+     }
+     catch (hypeReachError)
+     {
+          res.status(500).json({ hypeContinuumNetworkPortalError : hypeReachError.message })
+     }
+}
 
 
-
-
-
-
-
-
+// import HypeAccessEncryptionProtocol from "./serverAssests/HypeTrainConfiguration/LegendaryHypetrainContinuumAccessVoid.js"
 
 
 
 
 var hypeTrainMySQL = require('mysql');
+const path = require("path")
 
 const express = require("express")
+const bodyParser = require("body-parser");
+const logger = require("morgan")
+const cors = require ("cors") 
 
 const app = express();
 
+app.use(cors());
+app.set("View engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(logger("dev"));
+const loginrouter = require("./routes/api/Login")
+
+const PORT = 8080;
+app.use(loginrouter)
 app.use(express.static("public"));
+// app.get("/", (req, res) =>{
+//      res.send("Hello world");
+// })
+
+
+
+
 
 const legendaryHypeTrainContinuumConnection = hypeTrainMySQL.createConnection({
      host     : process.env.RDS_HOSTNAME,
@@ -37,131 +71,154 @@ const legendaryHypeTrainContinuumConnection = hypeTrainMySQL.createConnection({
      port     : process.env.RDS_PORT
 });
 
+//  default async function hypeTrainBeaconActivation(hypeBeaconProtocol) {
+//      try
+//      {
+//           const hypeContinuumConnectionProtocol = hypeBeaconProtocol;
+         
+//           const hypeBeaconReachModel = [];
+         
+//           const hypeBeachReachData = await hypeTrainContinuumReach({ continuumReachStatement : hypeContinuumConnectionProtocol, hypeTrainBeaconData : hypeBeaconReachModel});
+         
+//           res.status(200).json({ hypeContinuumNetworkPortalLocation : hypeBeaconReachData })
+//      }
+//      catch (hypeReachError)
+//      {
+//           res.status(500).json({ hypeContinuumNetworkPortalError : hypeReachError.message })
+//      }
+// }
+
+
+//  const HypeAccessEncryptionProtocol = 
+// {
+//      encryptHypeAccessKey : (hypeAccessKey : string) =>
+//              bcrypt.genSalt(10)
+//              .then((salt => bcrypt.hash(hypeAccessKey, salt)))
+//              .then(hash => hash),
+    
+//      compareHypeAccessKey : (pureHypeAccessKey : string, hashAccessKey : string) =>
+//              bcrypt.compare(pureHypeAccessKey, hashAccessKey)
+//              .then(resp => resp)
+// }
 
 
 
 
-
-
-
-export function getHypeUsers()
+ function getHypeUsers()
 {
-     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUsers');
+     const hypeTrainBeaconSignalData = HypeTrainBeaconActivation('SELECT * FROM HypeUsers');
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeUserWithHypeUserName(hypeUserNames)
+ function getHypeUserWithHypeUserName(hypeUserNames)
 {
-     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT HIL.HypeIdentificationID, 
-     HIL.HypeUsername, HIL.HypeDisplayname
-     FROM ((HypeIdentificationList AS HIL
-     INNER JOIN HypeNameList AS HNL ON HIL.HypeIdentificationID = HNL.HypeNameID)
-     INNER JOIN HypeUsers ON HIL.HypeIdentificationID = HypeUsers.HypeID)
-     WHERE HIL.HypeUsername = ?', hypeUserNames);
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT HIL.HypeIdentificationID,  HIL.HypeUsername, HIL.HypeDisplayname,FROM ((HypeIdentificationList AS HIL INNER JOIN HypeNameList AS HNL ON HIL.HypeIdentificationID = HNL.HypeNameID) INNER JOIN HypeUsers ON HIL.HypeIdentificationID = HypeUsers.HypeID) WHERE HIL.HypeUsername = ?', hypeUserNames);
+
+    
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeUsersCredentials()
+ function getHypeUsersCredentials()
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCredentialsInterface');
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
 }
 
-export function getHypeUser(iDs)
+ function getHypeUser(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUsers AS HU WHERE HU.HypeID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeUserDisplayNameData(iDs)
+ function getHypeUserDisplayNameData(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeNameList AS HU WHERE HIL.HypeNameID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
 }
 
-export function getHypeUserCredentials(iDs)
+ function getHypeUserCredentials(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCredentialsInterface AS HCI WHERE HCI.HypeCredentialID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
 }
 
-export function getHypeUserProfileContents(iDs)
+ function getHypeUserProfileContents(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeProfileContents AS HPC WHERE HPC.HypeProfileContentID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
 }
 
-export function getHypeUniverseNetwork(iDs)
+ function getHypeUniverseNetwork(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUniverseNetworks AS HUN WHERE HUN.HypeNetworkID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
 }
 
-export function getHypeCart(iDs)
+ function getHypeCart(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCarts AS HC WHERE HC.HypeCartID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
 }
 
-export function getHypeUserIdentities(iDs)
+ function getHypeUserIdentities(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeIdentificationInterface AS HII WHERE HII.HypeIdentificationID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
 }
 
-export function getHypeReaction(iDs)
+ function getHypeReaction(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeReactions AS HR WHERE HR.HypeReactionID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeComment(iDs)
+ function getHypeComment(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCommentaryUniverse AS HCU WHERE HCU.HypeCommentID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeCartStation(iDs)
+ function getHypeCartStation(iDs)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCartStationInterface AS HCSI WHERE HCSI.HypeCartStationID = ?', iDs);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeCaptions()
+ function getHypeCaptions()
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface');
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeCaption(iDs)
+ function getHypeCaption(iDs)
 {
     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface AS HCI WHERE HCI.HypeCaptionID = ?', iDs);
      
     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeCaptionByCaption(hypeCaptions)
+ function getHypeCaptionByCaption(hypeCaptions)
 {
     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface AS HCI WHERE HCI.HypeCaption = ?', hypeCaptions);
      
     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function getHypeUserIDWithHypeUserName(hypeUserNames)
+ function getHypeUserIDWithHypeUserName(hypeUserNames)
 {
     const hypeTrainBeaconSignalData = getHypeUserWithHypeUserName(hypeUserNames);
     
@@ -170,14 +227,14 @@ export function getHypeUserIDWithHypeUserName(hypeUserNames)
     return hypeTrainBeaconSignalData.HypeID
 }
 
-export function updateHypeCaption(hypeCaptionID, updatedHypeCaption)
+ function updateHypeCaption(hypeCaptionID, updatedHypeCaption)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('UPDATE HypeCaptionInterface AS HCI SET HypeCaption = ? WHERE HCI.HypeCaptionID = ?', [updatedHypeCaption, hypeCaptionID]);
      
      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
 }
 
-export function updateHypeCaptionUses(hypeCaptionID, updatedHypeCaptionUses)
+ function updateHypeCaptionUses(hypeCaptionID, updatedHypeCaptionUses)
 {
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('UPDATE HypeCaptionInterface AS HCI SET HypeCaptionUses = ? WHERE HCI.HypeCaptionID = ?',[updatedHypeCaptionUses, hypeCaptionID]);
      
@@ -198,10 +255,9 @@ function checkHypeDataInstance(hypeBeaconSignalProtocol)
 
 
 
-function createHypeUserIdentification(hypeUserName, hypeDisplayName, hypeEmail)
+async function  createHypeUserIdentification (hypeUserName, hypeDisplayName, hypeEmail)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeIdentificationInterface (HypeIdentificationID INT NOT NULL PRIMARY KEY, HypeUsername VARCHAR(99), HypeDisplayName VARCHAR(99), HypeEmail VARCHAR(6999)
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeIdentificationInterface (HypeIdentificationID INT NOT NULL PRIMARY KEY, HypeUsername VARCHAR(99), HypeDisplayName VARCHAR(99), HypeEmail VARCHAR(6999))');
      
      const hypeIdentityID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserIdentities, 0, 49151);
      
@@ -210,10 +266,9 @@ function createHypeUserIdentification(hypeUserName, hypeDisplayName, hypeEmail)
      return hypeIdentityID;
 }
 
-function createHypeUserCredential(hypeAccessKey)
+async function createHypeUserCredential(hypeAccessKey)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCredentialsInterface (HypeCredentialID INT NOT NULL PRIMARY KEY, HypeAccessKey BINARY(64)
-     )');
+     checkHypeDataInstance("CREATE TABLE IF NOT EXISTS HypeCredentialsInterface (HypeCredentialID INT NOT NULL PRIMARY KEY, HypeAccessKey BINARY(64))");
      
      const hypeCredentialID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserCredentials, 0, 49151);
       
@@ -224,10 +279,9 @@ function createHypeUserCredential(hypeAccessKey)
      return hypeCredentialID;
 }
 
-function createHypeUserDisplayNameData(hypeFirstName, hypeLastName)
+async function createHypeUserDisplayNameData(hypeFirstName, hypeLastName)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeNameList (HypeNameID INT NOT NULL PRIMARY KEY, HypeFirstName VARCHAR(99), HypeLastName VARCHAR(99)
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeNameList (HypeNameID INT NOT NULL PRIMARY KEY, HypeFirstName VARCHAR(99), HypeLastName VARCHAR(99))');
      
      const hypeNameID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserDisplayNameData, 0, 49151);
      
@@ -236,10 +290,9 @@ function createHypeUserDisplayNameData(hypeFirstName, hypeLastName)
      return hypeNameID;
 }
 
-function createHypeUserProfileContents(hypeProfilePicPath)
+async function createHypeUserProfileContents(hypeProfilePicPath)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeProfileContents (HypeProfileContentID INT NOT NULL PRIMARY KEY, HypeProfilePic LONGBLOB
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeProfileContents (HypeProfileContentID INT NOT NULL PRIMARY KEY, HypeProfilePic LONGBLOB)');
      
      const hypeProfileContentID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserProfileContents, 0, 49151);
      
@@ -250,7 +303,7 @@ function createHypeUserProfileContents(hypeProfilePicPath)
      return hypeProfileContentID;
 }
 
-export function createHypeUser(
+ async function createHypeUser(
      hypeUsername,
      hypeDisplayName,
      hypeFirstName,
@@ -270,26 +323,14 @@ export function createHypeUser(
      
      const hypeNameID = createHypeUserDisplayNameData(hypeFirstName, hypeLastName);
      
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUsers (HypeID INT NOT NULL PRIMARY KEY, HypeProfileContentID INT, HypeCredentialID INT, HypeIdentificationID INT, HypeNameID INT, FOREIGN KEY (HypeNameID) REFERENCES HypeNameList(HypeNameID), FOREIGN KEY (HypeProfileContentID) REFERENCES HypeProfileContents(HypeProfileContentID), FOREIGN KEY (HypeCredentialID) REFERENCES HypeCredentialsInterface(HypeCredentialID), FOREIGN KEY (HypeIdentificationID) REFERENCES HypeIdentificationList(HypeIdentificationID)
-     )');
-     
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUsers (HypeID INT NOT NULL PRIMARY KEY, HypeProfileContentID INT, HypeCredentialID INT, HypeIdentificationID INT,HypeNameID INT,  FOREIGN KEY (HypeNameID) REFERENCES HypeNameList(HypeNameID), FOREIGN KEY (HypeProfileContentID) REFERENCES HypeProfileContents(HypeProfileContentID), FOREIGN KEY (HypeProfileContentID) REFERENCES HypeProfileContents(HypeProfileContentID),           FOREIGN KEY (HypeCredentialID) REFERENCES HypeCredentialsInterface(HypeCredentialID), FOREIGN KEY (HypeCredentialID) REFERENCES HypeCredentialsInterface(HypeCredentialID),           FOREIGN KEY (HypeIdentificationID) REFERENCES HypeIdentificationList(HypeIdentificationID))');
      return hypeTrainBeaconActivation('INSERT INTO HypeUsers VALUES (?, ?, ?, ?, ?)', [hypeID, hypeProfileContentsID, hypeCredentialID, hypeIdentificationID, hypeNameID]);
 }
 
 
-
-
-
-
-
-
-
-
-
-function addHypeCartIntoHypeUniversalNetwork(hypeTopicID, currentInteractedHypeUserID, hypeTopicRelationID)
+async function addHypeCartIntoHypeUniversalNetwork(hypeTopicID, currentInteractedHypeUserID, hypeTopicRelationID)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUniverseNetworks (HypeNetworkID INT NOT NULL PRIMARY KEY, HypeTopicID INT, CurrentInteractedHypeUserID INT, HypeTopicRelationID INT
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUniverseNetworks ( HypeNetworkID INT NOT NULL PRIMARY KEY, HypeTopicID INT, CurrentInteractedHypeUserID INT, HypeTopicRelationID INT)');
      
      const hypeNetworkID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUniversalNetwork, 0, 49151);
      
@@ -297,10 +338,9 @@ function addHypeCartIntoHypeUniversalNetwork(hypeTopicID, currentInteractedHypeU
      
      return hypeNetworkID;
 }
-function addHypeReactionsToHypeCart(hypeContentID, hypeReactionType, hypeReactionCount)
+async function addHypeReactionsToHypeCart(hypeContentID, hypeReactionType, hypeReactionCount)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeReactions (HypeReactionID INT NOT NULL PRIMARY KEY, HypeContentID INT, HypeReactionType INT, HypeReactionCount BIGINT
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeReactions ( HypeReactionID INT NOT NULL PRIMARY KEY, HypeContentID INT, HypeReactionType INT,  HypeReactionCount BIGINT)');
      
      const hypeReactionID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeReaction, 0, 49151);
      
@@ -308,10 +348,9 @@ function addHypeReactionsToHypeCart(hypeContentID, hypeReactionType, hypeReactio
      
      return hypeReactionID;
 }
-function addHypeCommentaryUniverse(hypeCommentorID, hypeComment, hypeReactionID, mySQLHypeModifiedDateString, mySQLHypeDateString)
+async function addHypeCommentaryUniverse(hypeCommentorID, hypeComment, hypeReactionID, mySQLHypeModifiedDateString, mySQLHypeDateString)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCommentaryUniverse (HypeCommentID INT NOT NULL PRIMARY KEY, HypeCommentorID INT, HypeComment VARCHAR(699), HypeReactionID INT, HypeModifiedDate DATETIME, HypeDate DATETIME, FOREIGN KEY (HypeCommentorID) REFERENCES HypeUsers(HypeID), FOREIGN KEY (HypeReactionID) REFERENCES HypeReactions(HypeReactionID)
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCommentaryUniverse ( HypeCommentID INT NOT NULL PRIMARY KEY, HypeCommentorID INT, HypeComment VARCHAR(699), HypeReactionID INT, HypeModifiedDate DATETIME,HypeDate DATETIME, FOREIGN KEY (HypeCommentorID) REFERENCES HypeUsers(HypeID), FOREIGN KEY (HypeReactionID) REFERENCES HypeReactions(HypeReactionID))');
      
      const hypeCommentID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeComment, 0, 49151);
      
@@ -319,10 +358,9 @@ function addHypeCommentaryUniverse(hypeCommentorID, hypeComment, hypeReactionID,
      
      return hypeCommentID;
 }
-function addHypeCaption(hypeCaption)
+async function addHypeCaption(hypeCaption)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCaptionInterface (HypeCaptionID INT NOT NULL PRIMARY KEY, HypeCaption VARCHAR(6999), HypeCaptionUses BIGINT
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCaptionInterface ( HypeCaptionID INT NOT NULL PRIMARY KEY, HypeCaption VARCHAR(6999),  HypeCaptionUses BIGINT))');
      
      const hypeCaptionData = getHypeCaptionByCaption([hypeCaption]);
      
@@ -341,10 +379,9 @@ function addHypeCaption(hypeCaption)
           return hypeCaptionID;
      }
 }
-function addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, hypes, hypeInteractions, hypeCommentID, hypeModifiedDateString, hypeDateString)
+async function addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, hypes, hypeInteractions, hypeCommentID, hypeModifiedDateString, hypeDateString)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCartStationInterface (HypeCartStationID INT NOT NULL PRIMARY KEY, HypeCaptionID INT, HypeCartTitle VARCHAR(699), Hypes BIGINT, HypeInteractions BIGINT, HypeCommentID INT, HypeModifiedDate DATETIME, HypeDate DATETIME, FOREIGN KEY (HypeCommentID) REFERENCES HypeCommentaryUniverse(HypeCommentID), FOREIGN KEY (HypeCaptionID) REFERENCES HypeCaptionInterface(HypeCaptionID) 
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCartStationInterface (  HypeCartStationID INT NOT NULL PRIMARY KEY, HypeCaptionID INT, HypeCartTitle VARCHAR(699), Hypes BIGINT, HypeInteractions BIGINT,  HypeCommentID INT,  HypeModifiedDate DATETIME, HypeDate DATETIME,  FOREIGN KEY (HypeCommentID) REFERENCES HypeCommentaryUniverse(HypeCommentID), FOREIGN KEY (HypeCaptionID) REFERENCES HypeCaptionInterface(HypeCaptionID))');
      
      const hypeCartStationID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeCartStation, 0, 49151);
      
@@ -352,7 +389,7 @@ function addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, h
      
      return hypeCartStationID;
 }
-export function createHypeCart(
+ async function createHypeCart(
      hypeCartTitle, 
      hypeCartCaption, 
      hypeUserName, 
@@ -376,15 +413,15 @@ export function createHypeCart(
      
      
      
-     const isoHypeModifiedDateString : String = hypeModifiedDateData.toISOString();
+     const isoHypeModifiedDateString = hypeModifiedDateData.toISOString();
      
-     const isoHypeDateString : String = hypeDateData.toISOString();
+     const isoHypeDateString  = hypeDateData.toISOString();
      
      cursor.execute("SET time_zone = '+00:00'")
      
-     const isoHypeModifiedDate = new Date(isoHypeModifiedDateString);
+     isoHypeModifiedDate = new Date(isoHypeModifiedDateString);
      
-     const isoHypeModifiedDate = new Date(isoHypeModifiedDateString);
+     isoHypeModifiedDate = new Date(isoHypeModifiedDateString);
      
      const isoHypeDate = new Date(isoHypeDateString);
      
@@ -396,8 +433,7 @@ export function createHypeCart(
      
      const hypeCartStationID = addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, 0, 0, hypeCommentID, mySQLHypeModifiedDateString, mySQLHypeDateString);
      
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCarts (HypeCartID INT NOT NULL PRIMARY KEY, HypeUserID INT, HypeCartStationID INT, HypeReachID INT, HypeInteractions BIGINT, FOREIGN KEY (HypeUserID) REFERENCES HypeUsers(HypeID), FOREIGN KEY(HypeReachID) REFERENCES HypeUniverseNetworks(HypeNetworkID), FOREIGN KEY(HypeCartStationID) REFERENCES HypeCartStationInterface(HypeCartStationID)
-     )');
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCarts (  HypeCartID INT NOT NULL PRIMARY KEY, HypeUserID INT, HypeCartStationID INT,  HypeReachID INT, HypeInteractions BIGINT, FOREIGN KEY (HypeUserID) REFERENCES HypeUsers(HypeID), FOREIGN KEY(HypeReachID) REFERENCES HypeUniverseNetworks(HypeNetworkID),           FOREIGN KEY(HypeCartStationID) REFERENCES HypeCartStationInterface(HypeCartStationID))');
      
      return hypeTrainBeaconActivation('INSERT INTO HypeCarts VALUES (?, ?, ?, ?, ?)', [hypeCartID, hypeUserID, hypeCartStationID, hypeReachID, 0]);
 }
@@ -781,5 +817,7 @@ WHERE HypeCarts.HypeCartID = ?;
 
 
 
-
+app.listen(PORT, () =>{
+     console.log(`server is listenig on ${PORT}`);
+})
 
