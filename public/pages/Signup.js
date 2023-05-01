@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { setCurrentHypeTrainContinuumSignalConnection } from '../../LegendaryHypeTrainContinuumSignalConnection.js';
+import { getHypeUserWithHypeUserName, createHypeUser, HypeAccessEncryptionProtocol } from '../../server.js';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {  TextInput, onChangeText, StyleSheet } from "react-native";
 
@@ -8,6 +10,7 @@ export default function SignupPage() {
         const [firstName, setFirstName] = useState("");
         const [lastName, setLastName] = useState("");
         const [username, setUsername] = useState("");
+        const [displayname, setDisplayName] = useState("");
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [usernameTaken, setUsernameTaken] = useState(false);
@@ -16,14 +19,30 @@ export default function SignupPage() {
   const HandleSignup = (event) => {
       
       event.preventDefault();
+      
+      const hypeUserIdentificationCredentials = getHypeUserWithHypeUserName([username]);
+      
+      const hypeUD = hypeUserCredentialshypeUserIdentificationCredentials.HypeID;
+      
       // Check if username is taken
-      if (username === "example") {
+      if (hypeUD != null && username === hypeUD.HypeUsername) 
+      {
           setUsernameTaken(true);
+          
           return;
-        }
-        // Process the signup form data here
-        console.log(`First name: ${firstName}, Last name: ${lastName}, Email: ${email}`);
-  };
+      }
+      
+      // Process the signup form data here
+      console.log(`First name: ${firstName}, Last name: ${lastName}, Email: ${email}`);
+      
+      const hypeAccessKeyInputEn = HypeAccessEncryptionProtocol.encryptHypeAccessKey(password);
+      
+      const hypeUserData = await createHypeUser(username, displayname, firstName, lastName, email, hypeAccessKeyInputEn, "");
+      
+      setCurrentHypeTrainContinuumSignalConnection(hypeUserData.HypeID, username, displayname, email);
+      
+      return;
+};
 
   return (
         <View style={style.container}>
@@ -54,6 +73,20 @@ export default function SignupPage() {
           </View>
           <View>
 
+        
+        <TextInput
+          placeholder="Display Name"
+          
+          style={styles.inputText}
+          
+          type="text"
+          
+          id="displayname"
+          
+          value={displayname}
+          
+          onChangeText={event => setDisplayName(event)}
+        />
         
         <TextInput
           placeholder="Username"
