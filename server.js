@@ -4,24 +4,25 @@
           npm i -D @types/bcrypt
 */
 
---Node.js
-// var hypeTrainMySQL = require('mysql');
-// const express = require("express")
+//Node.js
+var hypeTrainMySQL = require('mysql');
 
-const app = express()
-app.use(express.static("public"))
+const express = require("express")
 
-// const legendaryHypeTrainContinuumConnection = hypeTrainMySQL.createConnection({
-// host     : process.env.RDS_HOSTNAME,
+const app = express();
 
-// user     : process.env.RDS_USERNAME,
+app.use(express.static("public"));
 
-// password : process.env.RDS_PASSWORD,
+const legendaryHypeTrainContinuumConnection = hypeTrainMySQL.createConnection({
+     host     : process.env.RDS_HOSTNAME,
+     
+     user     : process.env.RDS_USERNAME,
+     
+     password : process.env.RDS_PASSWORD,
+     
+     port     : process.env.RDS_PORT
+});
 
-// port     : process.env.RDS_PORT
-// });
-
-// export default legendaryHypeTrainContinuumConnection;
 import * as bcrypt from 'bcrypt';
 
 export const HypeAccessEncryptionProtocol = 
