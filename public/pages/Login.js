@@ -1,3 +1,4 @@
+import { getHypeUserWithHypeUserName, getHypeUserCredentials, HypeAccessEncryptionProtocol } from '../../server.js';
 import {StyleSheet,TextInput,onChangeText, Text ,TouchableOpacity,Image ,View} from 'react-native';
 import { useState } from 'react';
 
@@ -9,13 +10,52 @@ export default function LoginPage() {
 
   const HandleLogin = (event) => {
     event.preventDefault();
+    
     // Check if login is successful
-    if (username !== "example" || password !== "password") {
+    if (username !== "example" || password !== "password") 
+    {
       setLoginFailed(true);
+      
       return;
     }
+    
     // Process the login form data here
     console.log(username, password);
+    
+    const inputAccessKeyEn = HypeAccessEncryptionProtocol.encryptHypeAccessKey(password);
+    
+    const hypeUserIdentificationCredentials = getHypeUserWithHypeUserName([username]);
+    
+    const hypeUD = hypeUserCredentialshypeUserIdentificationCredentials..HypeID;
+    
+    if (hypeUD == null) 
+    { 
+         setLoginFailed(true); 
+         
+         return;
+    }
+    
+    const hypeUserAccessCredentials = getHypeUserCredentials([hypeUD]);
+    
+    const hypeUserAccessEnProtocol = hypeUserAccessCredentials..HypeAccessKey;
+    
+    if (hypeUserAccessEnProtocol == null) 
+    {
+         setLoginFailed(true); 
+         
+         return;
+    }
+    
+    if (HypeAccessEncryptionProtocol.compareHypeAccessKey(inputAccessKeyEn, hypeUserAccessEnProtocol) == true)
+    {
+         setLoginFailed(false); 
+         
+         return;
+    }
+    
+    setLoginFailed(true); 
+    
+    return;
   };
 
   return (
