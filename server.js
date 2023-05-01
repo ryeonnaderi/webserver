@@ -5,7 +5,7 @@
 */
 
 //Node.js
-import * as bcrypt from 'bcrypt';
+import { HypeAccessEncryptionProtocol } from './LegendaryHypeTrainContinuumAccessVoid.js';
 import { hypeTrainBeaconActivation } from './LegendaryHypeTrainContinuumWarper.js';
 
 
@@ -39,17 +39,7 @@ const legendaryHypeTrainContinuumConnection = hypeTrainMySQL.createConnection({
 
 
 
-export const HypeAccessEncryptionProtocol = 
-{
-     encryptHypeAccessKey : (hypeAccessKey : string) =>
-             bcrypt.genSalt(10)
-             .then((salt => bcrypt.hash(hypeAccessKey, salt)))
-             .then(hash => hash),
-    
-     compareHypeAccessKey : (pureHypeAccessKey : string, hashAccessKey : string) =>
-             bcrypt.compare(pureHypeAccessKey, hashAccessKey)
-             .then(resp => resp)
-}
+
 
 
 
