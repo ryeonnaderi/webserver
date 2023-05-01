@@ -5,6 +5,21 @@
 */
 
 //Node.js
+import * as bcrypt from 'bcrypt';
+import { HypeAccessEncryptionProtocol } from './LegendaryHypeTrainContinuumAccessVoid.js';
+import { hypeTrainBeaconActivation } from './LegendaryHypeTrainContinuumWarper.js';
+
+
+
+
+
+
+
+
+
+
+
+
 var hypeTrainMySQL = require('mysql');
 
 const express = require("express")
@@ -23,7 +38,7 @@ const legendaryHypeTrainContinuumConnection = hypeTrainMySQL.createConnection({
      port     : process.env.RDS_PORT
 });
 
-import * as bcrypt from 'bcrypt';
+
 
 export const HypeAccessEncryptionProtocol = 
 {
@@ -37,8 +52,7 @@ export const HypeAccessEncryptionProtocol =
              .then(resp => resp)
 }
 
-import { hypeTrainBeaconActivation } from './LegendaryHypeTrainContinuumWarper.js';
-import { HypeAccessEncryptionProtocol } from './LegendaryHypeTrainContinuumAccessVoid.js';
+
 
 
 export function getHypeUsers()
