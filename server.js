@@ -5,7 +5,7 @@
 */
 
 //Node.js
-import { HypeAccessEncryptionProtocol } from './LegendaryHypeTrainContinuumAccessVoid.js';
+import { HypeAccessEncryptionProtocol } from './ServerAssets/LegendaryHypeTrainContinuumAccessVoid.js';
 import { hypeTrainBeaconActivation } from './LegendaryHypeTrainContinuumWarper.js';
 
 
