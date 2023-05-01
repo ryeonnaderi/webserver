@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import LegendaryHUDBuildingManager from './serverAssests/CustomUIFunctionality/UIBuilding/LegendaryHUDBuildingManager.js';
+import { getCurrentHypeTrainContinuumSignalConnection } from '../../LegendaryHypeTrainContinuumSignalConnection.js';
 import LegendaryHUDBuilder from './serverAssests/CustomUIFunctionality/UIBuilding/LegendaryHUDBuilder.js';
 import LoginPage from './public/pages/Login.js';
 
@@ -15,6 +16,8 @@ import LoginPage from './public/pages/Login.js';
 
 
 
+
+const currentHypeTrainContinuumConnection = getCurrentHypeTrainContinuumSignalConnection();
 
 const legendaryBuilder = LegendaryHUDBuilder.legendaryBuilding();
 
@@ -178,6 +181,7 @@ export default function HypeTrainStationHub()
     'center'
   );
   
+  /*
   var stationSearchBarSettings = legendaryBuild.ConfigureHUDSearchBar(
     'Search community...',
     '#699',
@@ -195,7 +199,8 @@ export default function HypeTrainStationHub()
     null,
     true
   );
-
+  */
+  
   var stationHypeShowcaseScrollView = legendaryBuild.ConfigureScrollView(
     'transparent',
     true,
@@ -206,6 +211,7 @@ export default function HypeTrainStationHub()
     'absolute'
   );
   
+  /*
   var collectionViewShowcaseData = [
     {
          iD : 1,
@@ -268,6 +274,7 @@ export default function HypeTrainStationHub()
     null,
     null
   )
+  */
   
   hypeTrainProfileButtonSettings.legendaryClickAction = () => navigation.navigate("HypeTrainProfile");
   
@@ -287,7 +294,7 @@ export default function HypeTrainStationHub()
   
   legendaryBuilder.SetUIComponent(hypeTrainProfileButtonSettings, 'right', '5%');
   
-  legendaryBuilder.SetUIComponent(stationSearchBarSettings, 'containerStyle', -10, 'top');
+  //legendaryBuilder.SetUIComponent(stationSearchBarSettings, 'containerStyle', -10, 'top');
   
   legendaryBuilder.SetUIComponent(topNavBarSettings, 'top', '10%');
   
@@ -295,9 +302,19 @@ export default function HypeTrainStationHub()
   
   legendaryBuilder.SetUIComponent(stationHypeShowcaseScrollView, 'top', '32%');
   
+  /*
   legendaryBuilder.SetUIComponent(hypeStationShowcaseCollectionViewSettings, 'left', '12.69%')
   
   legendaryBuilder.SetUIComponent(hypeStationShowcaseCollectionViewSettings, 'bottom', '-7%')
+  
+  <legendaryBuilder.HUDCollectionView 
+       hudCollectionViewSettings = { hypeStationShowcaseCollectionViewSettings } 
+        
+       hudCollectionViewData = { collectionViewShowcaseData } 
+  />
+  
+  <legendaryBuilder.HUDSearchBar searchBarData = { stationSearchBarSettings } />
+  */
   
   return (
     <View style = { stationMainHubViewSettings }>
@@ -320,14 +337,10 @@ export default function HypeTrainStationHub()
              buttonData = { mainTitleSettings }
         />
         
-        <legendaryBuilder.HUDSearchBar searchBarData = { stationSearchBarSettings } />
+        
       </View>
       
-      <legendaryBuilder.HUDCollectionView 
-           hudCollectionViewSettings = { hypeStationShowcaseCollectionViewSettings } 
-           
-           hudCollectionViewData = { collectionViewShowcaseData } 
-      />
+      
     </View>
   );
 }
@@ -525,7 +538,7 @@ const HypeTrainProfile = ({ navigation }) => {
   );
 
   var hypeTrainProfileDisplayNameLabelSettings = legendaryBuild.ConfigureHUDButton(
-    "Georgia Compt",
+    currentHypeTrainContinuumConnection.currentHypeDisplayName ? currentHypeTrainContinuumConnection.currentHypeDisplayName : "",
     true,
     1.0,
     10,
@@ -561,7 +574,7 @@ const HypeTrainProfile = ({ navigation }) => {
   )
   
   var hypeTrainProfileUsernameLabelSettings = legendaryBuild.ConfigureHUDButton(
-    "georgia.compt",
+    currentHypeTrainContinuumConnection.currentHypeUsername ? currentHypeTrainContinuumConnection.currentHypeUsername : "",
     true,
     1.0,
     10,
