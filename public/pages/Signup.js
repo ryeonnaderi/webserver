@@ -22,7 +22,7 @@ export default function SignupPage() {
       
       const hypeUserIdentificationCredentials = getHypeUserWithHypeUserName([username]);
       
-      const hypeUD = hypeUserCredentialshypeUserIdentificationCredentials.HypeID;
+      const hypeUD = hypeUserCredentialshypeUserIdentificationCredentials.hypeContinuumNetworkPortalLocation.HypeID;
       
       // Check if username is taken
       if (hypeUD != null && username === hypeUD.HypeUsername) 
