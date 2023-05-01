@@ -200,15 +200,7 @@ function checkHypeDataInstance(hypeBeaconSignalProtocol)
 
 function createHypeUserIdentification(hypeUserName, hypeDisplayName, hypeEmail)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeIdentificationInterface (
-          
-          HypeIdentificationID INT NOT NULL PRIMARY KEY,
-          
-          HypeUsername VARCHAR(99),
-          
-          HypeDisplayName VARCHAR(99),
-          
-          HypeEmail VARCHAR(6999)
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeIdentificationInterface (HypeIdentificationID INT NOT NULL PRIMARY KEY, HypeUsername VARCHAR(99), HypeDisplayName VARCHAR(99), HypeEmail VARCHAR(6999)
      )');
      
      const hypeIdentityID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserIdentities, 0, 49151);
@@ -220,11 +212,7 @@ function createHypeUserIdentification(hypeUserName, hypeDisplayName, hypeEmail)
 
 function createHypeUserCredential(hypeAccessKey)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCredentialsInterface (
-          
-          HypeCredentialID INT NOT NULL PRIMARY KEY,
-          
-          HypeAccessKey BINARY(64)
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCredentialsInterface (HypeCredentialID INT NOT NULL PRIMARY KEY, HypeAccessKey BINARY(64)
      )');
      
      const hypeCredentialID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserCredentials, 0, 49151);
@@ -238,13 +226,7 @@ function createHypeUserCredential(hypeAccessKey)
 
 function createHypeUserDisplayNameData(hypeFirstName, hypeLastName)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeNameList (
-          
-          HypeNameID INT NOT NULL PRIMARY KEY,
-          
-          HypeFirstName VARCHAR(99),
-          
-          HypeLastName VARCHAR(99)
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeNameList (HypeNameID INT NOT NULL PRIMARY KEY, HypeFirstName VARCHAR(99), HypeLastName VARCHAR(99)
      )');
      
      const hypeNameID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserDisplayNameData, 0, 49151);
@@ -256,11 +238,7 @@ function createHypeUserDisplayNameData(hypeFirstName, hypeLastName)
 
 function createHypeUserProfileContents(hypeProfilePicPath)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeProfileContents (
-          
-          HypeProfileContentID INT NOT NULL PRIMARY KEY,
-          
-          HypeProfilePic LONGBLOB
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeProfileContents (HypeProfileContentID INT NOT NULL PRIMARY KEY, HypeProfilePic LONGBLOB
      )');
      
      const hypeProfileContentID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserProfileContents, 0, 49151);
@@ -292,25 +270,7 @@ export function createHypeUser(
      
      const hypeNameID = createHypeUserDisplayNameData(hypeFirstName, hypeLastName);
      
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUsers (
-          
-          HypeID INT NOT NULL PRIMARY KEY, 
-          
-          HypeProfileContentID INT,
-          
-          HypeCredentialID INT,
-          
-          HypeIdentificationID INT,
-          
-          HypeNameID INT,
-          
-          FOREIGN KEY (HypeNameID) REFERENCES HypeNameList(HypeNameID),
-          
-          FOREIGN KEY (HypeProfileContentID) REFERENCES HypeProfileContents(HypeProfileContentID),
-          
-          FOREIGN KEY (HypeCredentialID) REFERENCES HypeCredentialsInterface(HypeCredentialID),
-          
-          FOREIGN KEY (HypeIdentificationID) REFERENCES HypeIdentificationList(HypeIdentificationID)
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUsers (HypeID INT NOT NULL PRIMARY KEY, HypeProfileContentID INT, HypeCredentialID INT, HypeIdentificationID INT, HypeNameID INT, FOREIGN KEY (HypeNameID) REFERENCES HypeNameList(HypeNameID), FOREIGN KEY (HypeProfileContentID) REFERENCES HypeProfileContents(HypeProfileContentID), FOREIGN KEY (HypeCredentialID) REFERENCES HypeCredentialsInterface(HypeCredentialID), FOREIGN KEY (HypeIdentificationID) REFERENCES HypeIdentificationList(HypeIdentificationID)
      )');
      
      return hypeTrainBeaconActivation('INSERT INTO HypeUsers VALUES (?, ?, ?, ?, ?)', [hypeID, hypeProfileContentsID, hypeCredentialID, hypeIdentificationID, hypeNameID]);
@@ -328,15 +288,7 @@ export function createHypeUser(
 
 function addHypeCartIntoHypeUniversalNetwork(hypeTopicID, currentInteractedHypeUserID, hypeTopicRelationID)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUniverseNetworks (
-          
-          HypeNetworkID INT NOT NULL PRIMARY KEY,
-          
-          HypeTopicID INT,
-          
-          CurrentInteractedHypeUserID INT,
-          
-          HypeTopicRelationID INT
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUniverseNetworks (HypeNetworkID INT NOT NULL PRIMARY KEY, HypeTopicID INT, CurrentInteractedHypeUserID INT, HypeTopicRelationID INT
      )');
      
      const hypeNetworkID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUniversalNetwork, 0, 49151);
@@ -347,15 +299,7 @@ function addHypeCartIntoHypeUniversalNetwork(hypeTopicID, currentInteractedHypeU
 }
 function addHypeReactionsToHypeCart(hypeContentID, hypeReactionType, hypeReactionCount)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeReactions (
-          
-          HypeReactionID INT NOT NULL PRIMARY KEY,
-          
-          HypeContentID INT,
-          
-          HypeReactionType INT,
-          
-          HypeReactionCount BIGINT
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeReactions (HypeReactionID INT NOT NULL PRIMARY KEY, HypeContentID INT, HypeReactionType INT, HypeReactionCount BIGINT
      )');
      
      const hypeReactionID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeReaction, 0, 49151);
@@ -366,23 +310,7 @@ function addHypeReactionsToHypeCart(hypeContentID, hypeReactionType, hypeReactio
 }
 function addHypeCommentaryUniverse(hypeCommentorID, hypeComment, hypeReactionID, mySQLHypeModifiedDateString, mySQLHypeDateString)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCommentaryUniverse (
-          
-          HypeCommentID INT NOT NULL PRIMARY KEY,
-          
-          HypeCommentorID INT,
-          
-          HypeComment VARCHAR(699),
-          
-          HypeReactionID INT,
-          
-          HypeModifiedDate DATETIME,
-          
-          HypeDate DATETIME,
-          
-          FOREIGN KEY (HypeCommentorID) REFERENCES HypeUsers(HypeID),
-          
-          FOREIGN KEY (HypeReactionID) REFERENCES HypeReactions(HypeReactionID)
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCommentaryUniverse (HypeCommentID INT NOT NULL PRIMARY KEY, HypeCommentorID INT, HypeComment VARCHAR(699), HypeReactionID INT, HypeModifiedDate DATETIME, HypeDate DATETIME, FOREIGN KEY (HypeCommentorID) REFERENCES HypeUsers(HypeID), FOREIGN KEY (HypeReactionID) REFERENCES HypeReactions(HypeReactionID)
      )');
      
      const hypeCommentID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeComment, 0, 49151);
@@ -393,13 +321,7 @@ function addHypeCommentaryUniverse(hypeCommentorID, hypeComment, hypeReactionID,
 }
 function addHypeCaption(hypeCaption)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCaptionInterface (
-          
-          HypeCaptionID INT NOT NULL PRIMARY KEY,
-          
-          HypeCaption VARCHAR(6999),
-          
-          HypeCaptionUses BIGINT
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCaptionInterface (HypeCaptionID INT NOT NULL PRIMARY KEY, HypeCaption VARCHAR(6999), HypeCaptionUses BIGINT
      )');
      
      const hypeCaptionData = getHypeCaptionByCaption([hypeCaption]);
@@ -421,27 +343,7 @@ function addHypeCaption(hypeCaption)
 }
 function addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, hypes, hypeInteractions, hypeCommentID, hypeModifiedDateString, hypeDateString)
 {
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCartStationInterface (
-          
-          HypeCartStationID INT NOT NULL PRIMARY KEY,
-          
-          HypeCaptionID INT,
-          
-          HypeCartTitle VARCHAR(699),
-          
-          Hypes BIGINT,
-          
-          HypeInteractions BIGINT,
-          
-          HypeCommentID INT,
-          
-          HypeModifiedDate DATETIME,
-          
-          HypeDate DATETIME,
-          
-          FOREIGN KEY (HypeCommentID) REFERENCES HypeCommentaryUniverse(HypeCommentID) ,
-          
-          FOREIGN KEY (HypeCaptionID) REFERENCES HypeCaptionInterface(HypeCaptionID) 
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCartStationInterface (HypeCartStationID INT NOT NULL PRIMARY KEY, HypeCaptionID INT, HypeCartTitle VARCHAR(699), Hypes BIGINT, HypeInteractions BIGINT, HypeCommentID INT, HypeModifiedDate DATETIME, HypeDate DATETIME, FOREIGN KEY (HypeCommentID) REFERENCES HypeCommentaryUniverse(HypeCommentID), FOREIGN KEY (HypeCaptionID) REFERENCES HypeCaptionInterface(HypeCaptionID) 
      )');
      
      const hypeCartStationID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeCartStation, 0, 49151);
@@ -494,23 +396,7 @@ export function createHypeCart(
      
      const hypeCartStationID = addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, 0, 0, hypeCommentID, mySQLHypeModifiedDateString, mySQLHypeDateString);
      
-     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCarts (
-          
-          HypeCartID INT NOT NULL PRIMARY KEY,
-          
-          HypeUserID INT,
-          
-          HypeCartStationID INT,
-          
-          HypeReachID INT,
-          
-          HypeInteractions BIGINT,
-          
-          FOREIGN KEY (HypeUserID) REFERENCES HypeUsers(HypeID),
-          
-          FOREIGN KEY(HypeReachID) REFERENCES HypeUniverseNetworks(HypeNetworkID),
-          
-          FOREIGN KEY(HypeCartStationID) REFERENCES HypeCartStationInterface(HypeCartStationID)
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCarts (HypeCartID INT NOT NULL PRIMARY KEY, HypeUserID INT, HypeCartStationID INT, HypeReachID INT, HypeInteractions BIGINT, FOREIGN KEY (HypeUserID) REFERENCES HypeUsers(HypeID), FOREIGN KEY(HypeReachID) REFERENCES HypeUniverseNetworks(HypeNetworkID), FOREIGN KEY(HypeCartStationID) REFERENCES HypeCartStationInterface(HypeCartStationID)
      )');
      
      return hypeTrainBeaconActivation('INSERT INTO HypeCarts VALUES (?, ?, ?, ?, ?)', [hypeCartID, hypeUserID, hypeCartStationID, hypeReachID, 0]);
