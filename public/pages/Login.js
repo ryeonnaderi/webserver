@@ -1,4 +1,5 @@
 import { getHypeUserWithHypeUserName, getHypeUserCredentials, HypeAccessEncryptionProtocol } from '../../server.js';
+import { setCurrentHypeTrainContinuumSignalConnection } from '../../LegendaryHypeTrainContinuumSignalConnection.js';
 import {StyleSheet,TextInput,onChangeText, Text ,TouchableOpacity,Image ,View} from 'react-native';
 import { useState } from 'react';
 
@@ -49,6 +50,8 @@ export default function LoginPage() {
     if (HypeAccessEncryptionProtocol.compareHypeAccessKey(inputAccessKeyEn, hypeUserAccessEnProtocol) == true)
     {
          setLoginFailed(false); 
+         
+         setCurrentHypeTrainContinuumSignalConnection(hypeUD, username, hypeUserCredentialshypeUserIdentificationCredentials..HypeDisplayName, hypeUserCredentialshypeUserIdentificationCredentials..HypeEmail);
          
          return;
     }
