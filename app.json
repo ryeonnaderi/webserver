@@ -3,14 +3,10 @@
     "name": "HypeTrain",
     "slug": "HypeTrain",
     "version": "1.0.0",
+    "entryPoint": "./app.js",
     "assetBundlePatterns": [
       "**/*"
     ]
-  },
-  {
-    "expo": {
-         "entryPoint": "./app.js"
-    }
   },
   "name": "HypeTrain"
 }
