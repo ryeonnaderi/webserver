@@ -22,262 +22,382 @@ app.use(express.static("public"))
 // });
 
 // export default legendaryHypeTrainContinuumConnection;
-// import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
-//     export const HypeAccessEncryptionProtocol = {
-//         encryptHypeAccessKey : (hypeAccessKey : string) =>
-//              bcrypt.genSalt(10)
-//              .then((salt => bcrypt.hash(hypeAccessKey, salt)))
-//              .then(hash => hash),
+export const HypeAccessEncryptionProtocol = 
+{
+     encryptHypeAccessKey : (hypeAccessKey : string) =>
+             bcrypt.genSalt(10)
+             .then((salt => bcrypt.hash(hypeAccessKey, salt)))
+             .then(hash => hash),
     
-//         compareHypeAccessKey : (pureHypeAccessKey : string, hashAccessKey : string) =>
-//              bcrypt.compare(pureHypeAccessKey, hashAccessKey)
-//              .then(resp => resp)
+     compareHypeAccessKey : (pureHypeAccessKey : string, hashAccessKey : string) =>
+             bcrypt.compare(pureHypeAccessKey, hashAccessKey)
+             .then(resp => resp)
+}
+
+import { hypeTrainBeaconActivation } from './LegendaryHypeTrainContinuumWarper.js';
+import { HypeAccessEncryptionProtocol } from './LegendaryHypeTrainContinuumAccessVoid.js';
+
+
+export function getHypeUsers()
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUsers');
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeUserWithHypeUserName(hypeUserNames)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT HIL.HypeIdentificationID, 
+     HIL.HypeUsername, HIL.HypeDisplayname
+     FROM ((HypeIdentificationList AS HIL
+     INNER JOIN HypeNameList AS HNL ON HIL.HypeIdentificationID = HNL.HypeNameID)
+     INNER JOIN HypeUsers ON HIL.HypeIdentificationID = HypeUsers.HypeID)
+     WHERE HIL.HypeUsername = ?', hypeUserNames);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeUsersCredentials()
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCredentialsInterface');
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
+}
+
+export function getHypeUser(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUsers AS HU WHERE HU.HypeID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeUserDisplayNameData(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeNameList AS HU WHERE HIL.HypeNameID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
+}
+
+export function getHypeUserCredentials(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCredentialsInterface AS HCI WHERE HCI.HypeCredentialID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
+}
+
+export function getHypeUserProfileContents(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeProfileContents AS HPC WHERE HPC.HypeProfileContentID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
+}
+
+export function getHypeUniverseNetwork(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUniverseNetworks AS HUN WHERE HUN.HypeNetworkID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
+}
+
+export function getHypeCart(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCarts AS HC WHERE HC.HypeCartID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
+}
+
+export function getHypeUserIdentities(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeIdentificationInterface AS HII WHERE HII.HypeIdentificationID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
+}
+
+export function getHypeReaction(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeReactions AS HR WHERE HR.HypeReactionID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeComment(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCommentaryUniverse AS HCU WHERE HCU.HypeCommentID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeCartStation(iDs)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCartStationInterface AS HCSI WHERE HCSI.HypeCartStationID = ?', iDs);
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeCaptions()
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface');
+     
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeCaption(iDs)
+{
+    const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface AS HCI WHERE HCI.HypeCaptionID = ?', iDs);
+     
+    return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeCaptionByCaption(hypeCaptions)
+{
+    const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface AS HCI WHERE HCI.HypeCaption = ?', hypeCaptions);
+     
+    return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
+
+export function getHypeUserIDWithHypeUserName(hypeUserNames)
+{
+    const hypeTrainBeaconSignalData = getHypeUserWithHypeUserName(hypeUserNames);
     
-//     }
-
-//     import { hypeTrainBeaconActivation } from './LegendaryHypeTrainContinuumWarper.js';
-// import { HypeAccessEncryptionProtocol } from './LegendaryHypeTrainContinuumAccessVoid.js';
-
-
-// export function getHypeUsers()
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUsers');
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeUserWithHypeUserName(hypeUserNames)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT HIL.HypeIdentificationID, 
-//      HIL.HypeUsername, HIL.HypeDisplayname
-//      FROM ((HypeIdentificationList AS HIL
-//      INNER JOIN HypeNameList AS HNL ON HIL.HypeIdentificationID = HNL.HypeNameID)
-//      INNER JOIN HypeUsers ON HIL.HypeIdentificationID = HypeUsers.HypeID)
-//      WHERE HIL.HypeUsername = ?', hypeUserNames);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeUsersCredentials()
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCredentialsInterface');
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
-// }
-
-// export function getHypeUser(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUsers AS HU WHERE HU.HypeID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeUserDisplayNameData(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeNameList AS HU WHERE HIL.HypeNameID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
-// }
-
-// export function getHypeUserCredentials(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCredentialsInterface AS HCI WHERE HCI.HypeCredentialID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
-// }
-
-// export function getHypeUserProfileContents(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeProfileContents AS HPC WHERE HPC.HypeProfileContentID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
-// }
-
-// export function getHypeUniverseNetwork(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeUniverseNetworks AS HUN WHERE HUN.HypeNetworkID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
-// }
-
-// export function getHypeCart(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCarts AS HC WHERE HC.HypeCartID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
-// }
-
-// export function getHypeUserIdentities(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeIdentificationInterface AS HII WHERE HII.HypeIdentificationID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData); 
-// }
-
-// export function getHypeReaction(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeReactions AS HR WHERE HR.HypeReactionID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeComment(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCommentaryUniverse AS HCU WHERE HCU.HypeCommentID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeCartStation(iDs)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCartStationInterface AS HCSI WHERE HCSI.HypeCartStationID = ?', iDs);
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeCaptions()
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface');
-     
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeCaption(iDs)
-// {
-//     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface AS HCI WHERE HCI.HypeCaptionID = ?', iDs);
-     
-//     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeCaptionByCaption(hypeCaptions)
-// {
-//     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('SELECT * FROM HypeCaptionInterface AS HCI WHERE HCI.HypeCaption = ?', hypeCaptions);
-     
-//     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
-
-// export function getHypeUserIDWithHypeUserName(hypeUserNames)
-// {
-//     const hypeTrainBeaconSignalData = getHypeUserWithHypeUserName(hypeUserNames);
+    if (hypeTrainBeaconSignalData == null) { return null; }
     
-//     if (hypeTrainBeaconSignalData == null) { return null; }
-    
-//     return hypeTrainBeaconSignalData.HypeID
-// }
+    return hypeTrainBeaconSignalData.HypeID
+}
 
-// export function updateHypeCaption(hypeCaptionID, updatedHypeCaption)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('UPDATE HypeCaptionInterface AS HCI SET HypeCaption = ? WHERE HCI.HypeCaptionID = ?', [updatedHypeCaption, hypeCaptionID]);
+export function updateHypeCaption(hypeCaptionID, updatedHypeCaption)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('UPDATE HypeCaptionInterface AS HCI SET HypeCaption = ? WHERE HCI.HypeCaptionID = ?', [updatedHypeCaption, hypeCaptionID]);
      
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
 
-// export function updateHypeCaptionUses(hypeCaptionID, updatedHypeCaptionUses)
-// {
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('UPDATE HypeCaptionInterface AS HCI SET HypeCaptionUses = ? WHERE HCI.HypeCaptionID = ?',[updatedHypeCaptionUses, hypeCaptionID]);
+export function updateHypeCaptionUses(hypeCaptionID, updatedHypeCaptionUses)
+{
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('UPDATE HypeCaptionInterface AS HCI SET HypeCaptionUses = ? WHERE HCI.HypeCaptionID = ?',[updatedHypeCaptionUses, hypeCaptionID]);
      
-//      return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
-// }
+     return confirmHypeTrainUniversalContinuumSignalData(hypeTrainBeaconSignalData);
+}
 
 
 
 
 
-
-// function createHypeUserIdentification(hypeUserName, hypeDisplayName)
-// {
-//      const hypeIdentityID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserIdentities, 0, 49151);
-     
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeIdentificationInterface VALUES (?, ?, ?)', [hypeIdentificationID, hypeUserName, hypeDisplayName]);
-     
-//      return hypeIdentityID;
-// }
-
-// function createHypeUserCredential(hypeAccessKey)
-// {
-//      const hypeCredentialID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserCredentials, 0, 49151);
-     
-//      const encryptedHypeAccessKey = await HypeAccessEncryptionProtocol.encryptHypeAccessKey(hypeAccessKey);
-     
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeCredentialsInterface VALUES (?, ?)', [hypeCredentialID, encryptedHypeAccessKey]);
-     
-//      return hypeCredentialID;
-// }
-
-// function createHypeUserDisplayNameData(hypeFirstName, hypeLastName)
-// {
-//      const hypeNameID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserDisplayNameData, 0, 49151);
-     
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeNameList VALUES (?, ?, ?)', [hypeNameID, hypeFirstName, hypeLastName]);
-     
-//      return hypeNameID;
-// }
-
-// function createHypeUserProfileContents(hypeProfilePicPath)
-// {
-//      const hypeProfileContentID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserProfileContents, 0, 49151);
-     
-//      const hypeProfilePicData = null; // replace with BINARY image encode function
-     
-//      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeNameList VALUES (?, ?)', [hypeProfileContentID, hypeProfilePicData]);
-     
-//      return hypeProfileContentID;
-// }
-
-// export function createHypeUser(
-//      hypeUsername,
-//      hypeDisplayName,
-//      hypeFirstName,
-//      hypeLastName,
-//      hypeAccessKey,
-//      hypeProfilePicPath
-// )
-// {
-//      const hypeID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUser, 0, 49151);
-     
-//      const hypeCredentialID = createHypeUserCredential(hypeAccessKey);
-     
-//      const hypeIdentificationID = createHypeUserIdentification(hypeUserName, hypeDisplayName);
-     
-//      const hypeProfileContentsID = createHypeUserProfileContents(hypeProfilePicPath);
-     
-//      const hypeNameID = createHypeUserDisplayNameData(hypeFirstName, hypeLastName);
-     
-//      return hypeTrainBeaconActivation('INSERT INTO HypeUsers VALUES (?, ?, ?, ?, ?)', [hypeID, hypeProfileContentsID, hypeCredentialID, hypeIdentificationID, hypeNameID]);
-// }
+function checkHypeDataInstance(hypeBeaconSignalProtocol)
+{
+     hypeTrainBeaconActivation(hypeBeaconSignalProtocol);
+}
 
 
-/*
+
+
+
+
+function createHypeUserIdentification(hypeUserName, hypeDisplayName, hypeEmail)
+{
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeIdentificationInterface (
+          
+          HypeIdentificationID INT NOT NULL PRIMARY KEY,
+          
+          HypeUsername VARCHAR(99),
+          
+          HypeDisplayName VARCHAR(99),
+          
+          HypeEmail VARCHAR(6999)
+     )');
+     
+     const hypeIdentityID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserIdentities, 0, 49151);
+     
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeIdentificationInterface VALUES (?, ?, ?, ?)', [hypeIdentificationID, hypeUserName, hypeDisplayName, hypeEmail]);
+     
+     return hypeIdentityID;
+}
+
+function createHypeUserCredential(hypeAccessKey)
+{
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCredentialsInterface (
+          
+          HypeCredentialID INT NOT NULL PRIMARY KEY,
+          
+          HypeAccessKey BINARY(64)
+     )');
+     
+     const hypeCredentialID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserCredentials, 0, 49151);
+      
+     const encryptedHypeAccessKey = await HypeAccessEncryptionProtocol.encryptHypeAccessKey(hypeAccessKey);
+      
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeCredentialsInterface VALUES (?, ?)', [hypeCredentialID, encryptedHypeAccessKey]);
+      
+     return hypeCredentialID;
+}
+
+function createHypeUserDisplayNameData(hypeFirstName, hypeLastName)
+{
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeNameList (
+          
+          HypeNameID INT NOT NULL PRIMARY KEY,
+          
+          HypeFirstName VARCHAR(99),
+          
+          HypeLastName VARCHAR(99)
+     )');
+     
+     const hypeNameID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserDisplayNameData, 0, 49151);
+     
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeNameList VALUES (?, ?, ?)', [hypeNameID, hypeFirstName, hypeLastName]);
+     
+     return hypeNameID;
+}
+
+function createHypeUserProfileContents(hypeProfilePicPath)
+{
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeProfileContents (
+          
+          HypeProfileContentID INT NOT NULL PRIMARY KEY,
+          
+          HypeProfilePic LONGBLOB
+     )');
+     
+     const hypeProfileContentID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUserProfileContents, 0, 49151);
+     
+     const hypeProfilePicData = null; // replace with BINARY image encode function
+     
+     const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeNameList VALUES (?, ?)', [hypeProfileContentID, hypeProfilePicData]);
+     
+     return hypeProfileContentID;
+}
+
+export function createHypeUser(
+     hypeUsername,
+     hypeDisplayName,
+     hypeFirstName,
+     hypeLastName,
+     hypeEmail,
+     hypeAccessKey,
+     hypeProfilePicPath
+)
+{
+     const hypeID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUser, 0, 49151);
+     
+     const hypeCredentialID = createHypeUserCredential(hypeAccessKey);
+     
+     const hypeIdentificationID = createHypeUserIdentification(hypeUserName, hypeDisplayName, hypeEmail);
+     
+     const hypeProfileContentsID = createHypeUserProfileContents(hypeProfilePicPath);
+     
+     const hypeNameID = createHypeUserDisplayNameData(hypeFirstName, hypeLastName);
+     
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUsers (
+          
+          HypeID INT NOT NULL PRIMARY KEY, 
+          
+          HypeProfileContentID INT,
+          
+          HypeCredentialID INT,
+          
+          HypeIdentificationID INT,
+          
+          HypeNameID INT,
+          
+          FOREIGN KEY (HypeNameID) REFERENCES HypeNameList(HypeNameID),
+          
+          FOREIGN KEY (HypeProfileContentID) REFERENCES HypeProfileContents(HypeProfileContentID),
+          
+          FOREIGN KEY (HypeCredentialID) REFERENCES HypeCredentialsInterface(HypeCredentialID),
+          
+          FOREIGN KEY (HypeIdentificationID) REFERENCES HypeIdentificationList(HypeIdentificationID)
+     )');
+     
+     return hypeTrainBeaconActivation('INSERT INTO HypeUsers VALUES (?, ?, ?, ?, ?)', [hypeID, hypeProfileContentsID, hypeCredentialID, hypeIdentificationID, hypeNameID]);
+}
+
+
+
+
+
+
+
+
+
+
+
 function addHypeCartIntoHypeUniversalNetwork(hypeTopicID, currentInteractedHypeUserID, hypeTopicRelationID)
 {
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeUniverseNetworks (
+          
+          HypeNetworkID INT NOT NULL PRIMARY KEY,
+          
+          HypeTopicID INT,
+          
+          CurrentInteractedHypeUserID INT,
+          
+          HypeTopicRelationID INT
+     )');
+     
      const hypeNetworkID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeUniversalNetwork, 0, 49151);
      
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeUniverseNetworks VALUES (?, ?, ?, ?)', [hypeNetworkID, hypeTopicID, currentInteractedHypeUserID, hypeTopicRelationID]);
      
      return hypeNetworkID;
 }
-
 function addHypeReactionsToHypeCart(hypeContentID, hypeReactionType, hypeReactionCount)
 {
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeReactions (
+          
+          HypeReactionID INT NOT NULL PRIMARY KEY,
+          
+          HypeContentID INT,
+          
+          HypeReactionType INT,
+          
+          HypeReactionCount BIGINT
+     )');
+     
      const hypeReactionID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeReaction, 0, 49151);
      
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeReactions VALUES (?, ?, ?, ?)', [hypeReactionID, hypeContentID, hypeReactionType, hypeReactionCount]);
      
      return hypeReactionID;
 }
-
 function addHypeCommentaryUniverse(hypeCommentorID, hypeComment, hypeReactionID, mySQLHypeModifiedDateString, mySQLHypeDateString)
 {
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCommentaryUniverse (
+          
+          HypeCommentID INT NOT NULL PRIMARY KEY,
+          
+          HypeCommentorID INT,
+          
+          HypeComment VARCHAR(699),
+          
+          HypeReactionID INT,
+          
+          HypeModifiedDate DATETIME,
+          
+          HypeDate DATETIME,
+          
+          FOREIGN KEY (HypeCommentorID) REFERENCES HypeUsers(HypeID),
+          
+          FOREIGN KEY (HypeReactionID) REFERENCES HypeReactions(HypeReactionID)
+     )');
+     
      const hypeCommentID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeComment, 0, 49151);
      
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeCommentaryUniverse VALUES (?, ?, ?, ?, ?, ?)', [hypeCommentID, hypeCommentorID, hypeComment, hypeReactionID, mySQLHypeModifiedDateString, mySQLHypeDateString]);
      
      return hypeCommentID;
 }
-
 function addHypeCaption(hypeCaption)
 {
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCaptionInterface (
+          
+          HypeCaptionID INT NOT NULL PRIMARY KEY,
+          
+          HypeCaption VARCHAR(6999),
+          
+          HypeCaptionUses BIGINT
+     )');
+     
      const hypeCaptionData = getHypeCaptionByCaption([hypeCaption]);
      
      if (hypeCaptionData != null)
@@ -295,16 +415,37 @@ function addHypeCaption(hypeCaption)
           return hypeCaptionID;
      }
 }
-
 function addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, hypes, hypeInteractions, hypeCommentID, hypeModifiedDateString, hypeDateString)
 {
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCartStationInterface (
+          
+          HypeCartStationID INT NOT NULL PRIMARY KEY,
+          
+          HypeCaptionID INT,
+          
+          HypeCartTitle VARCHAR(699),
+          
+          Hypes BIGINT,
+          
+          HypeInteractions BIGINT,
+          
+          HypeCommentID INT,
+          
+          HypeModifiedDate DATETIME,
+          
+          HypeDate DATETIME,
+          
+          FOREIGN KEY (HypeCommentID) REFERENCES HypeCommentaryUniverse(HypeCommentID) ,
+          
+          FOREIGN KEY (HypeCaptionID) REFERENCES HypeCaptionInterface(HypeCaptionID) 
+     )');
+     
      const hypeCartStationID = await confirmHypeUniversalGateWayID([createHypeUniverseGateKey(0, 49151)], getHypeCartStation, 0, 49151);
      
      const hypeTrainBeaconSignalData = hypeTrainBeaconActivation('INSERT INTO HypeCartStationInterface VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [hypeCartStationID, hypeCaptionID, hypeCartTitle, hypes, hypeInteractions, hypeCommentID, hypeModifiedDateString, hypeDateString]);
      
      return hypeCartStationID;
 }
-
 export function createHypeCart(
      hypeCartTitle, 
      hypeCartCaption, 
@@ -349,9 +490,27 @@ export function createHypeCart(
      
      const hypeCartStationID = addHypeCartIntoHypeCartStationInterface(hypeCaptionID, hypeCartTitle, 0, 0, hypeCommentID, mySQLHypeModifiedDateString, mySQLHypeDateString);
      
+     checkHypeDataInstance('CREATE TABLE IF NOT EXISTS HypeCarts (
+          
+          HypeCartID INT NOT NULL PRIMARY KEY,
+          
+          HypeUserID INT,
+          
+          HypeCartStationID INT,
+          
+          HypeReachID INT,
+          
+          HypeInteractions BIGINT,
+          
+          FOREIGN KEY (HypeUserID) REFERENCES HypeUsers(HypeID),
+          
+          FOREIGN KEY(HypeReachID) REFERENCES HypeUniverseNetworks(HypeNetworkID),
+          
+          FOREIGN KEY(HypeCartStationID) REFERENCES HypeCartStationInterface(HypeCartStationID)
+     )');
+     
      return hypeTrainBeaconActivation('INSERT INTO HypeCarts VALUES (?, ?, ?, ?, ?)', [hypeCartID, hypeUserID, hypeCartStationID, hypeReachID, 0]);
 }
-*/
 
 function createHypeUniverseGateKey(minKeyV, maxKeyV)
 {
