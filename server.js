@@ -41,6 +41,7 @@ const bodyParser = require("body-parser");
 const logger = require("morgan")
 const cors = require ("cors") 
 
+const routes = require("./routes")
 const app = express();
 
 app.use(cors());
@@ -48,14 +49,11 @@ app.set("View engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
-const loginrouter = require("./routes/api/Login")
 
 const PORT = 8080;
-app.use(loginrouter)
-app.use(express.static("public"));
-// app.get("/", (req, res) =>{
-//      res.send("Hello world");
-// })
+
+app.use(routes)
+
 
 
 
