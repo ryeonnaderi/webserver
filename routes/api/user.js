@@ -1,17 +1,17 @@
 const router = require("express").Router();
-const usercontroller = require("../../contollers/usercontroller");
+const usercontroller = require("../../contollers/usercontroller.js");
 
 router.route("/")
-  .post(userController.create)
+  .post(usercontroller.create)
   .get(userController.findById);
 
 
 router.route("/:email")
-  .get(userController.findByEmail);
-
+   .post(usercontroller.create)
+  .get(usercontroller.findByEmail);
   router.route("/signin")
-  .get(userController.findAll)
-  .post(userController.create);
+  .post(usercontroller.create)
+  .get(usercontroller.findAll);
 
 // Matches with "/api/user/:id"
 router
@@ -20,4 +20,4 @@ router
   .put(userController.update)
   .delete(userController.remove);
 
-  module.exports = router
+module.exports = router
