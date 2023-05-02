@@ -3,21 +3,21 @@ const schema = mysql.schema;
 const Userschema = new schema({
 
   HypeID:{
-      type: Integer,
+      type: Number,
       required: " ID is required",
     },
     
     HypeProfilecontentID:{
-        type: Integer
+        type: Number
     },
     HypeCredentialID:{
-        type: Integer
+        type: Number
     },
     HypeIdentificationID:{
-        type: Integer
+        type: Number
     },
     HypeNameID:{
-        type: Integer
+        type: Number
     }
 
 
@@ -58,4 +58,4 @@ const Userschema = new schema({
     // },
     
 })
-const HypeUser = mysql.model("user", Userschema)
+const hypeUser = mysql.model("HypeUser", Userschema)
