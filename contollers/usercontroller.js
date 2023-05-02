@@ -1,4 +1,4 @@
- class HypeContinuumDataAccess
+class HypeContinuumDataAccess
 {
    static hypeContinuumAccess = null;
    
